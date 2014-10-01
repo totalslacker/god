@@ -16,7 +16,7 @@ CONTACT_DEPS[:campfire].each do |d|
 end
 
 module Marshmallow
-  class Connection
+  class CampfireConnection
     def initialize(options)
       raise "Required option :subdomain not set." unless options[:subdomain]
       raise "Required option :token not set." unless options[:token]
@@ -102,7 +102,7 @@ module God
       def notify(message, time, priority, category, host)
         body = Campfire.format.call(message, time, priority, category, host)
 
-        conn = Marshmallow::Connection.new(
+        conn = Marshmallow::CampfireConnection.new(
           :subdomain => arg(:subdomain),
           :token => arg(:token),
           :ssl => arg(:ssl)
